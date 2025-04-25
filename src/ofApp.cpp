@@ -68,7 +68,7 @@ void ofApp::update(){
             double theta = CV_PI / 180;
             HoughLines(detectedEdges_output, lines, 1, theta, 110);
 
-            // Spherical to Rectangular Conversion 
+            // Polar to Rectangular Conversion 
             for (size_t i = 0; i < lines.size(); i++) {
                 float rho = lines[i][0];
                 float theta = lines[i][1];
@@ -145,9 +145,9 @@ void ofApp::draw(){
     // Row 1
         colorImg.draw(0, 0); // starts drawing top left            
         grayImg.draw(colorImg.getWidth(), 0);
+        blurredImg.draw(colorImg.getWidth() * 2, 0);
 
     // Row 2
-        blurredImg.draw(colorImg.getWidth() * 2, 0);
         cannyEdge.draw(0, colorImg.getHeight());
         houghTransform.draw(colorImg.getWidth(), colorImg.getHeight());
         stackedEdgesOnGray.draw(colorImg.getWidth() * 2, colorImg.getHeight());
